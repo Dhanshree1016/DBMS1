@@ -1,0 +1,35 @@
+practical -09 == Exception handling 
+
+
+CREATE TABLE customers (
+  c_id   NUMBER PRIMARY KEY,
+  c_name VARCHAR2(100),
+  c_addr VARCHAR2(255)
+);
+
+
+
+INSERT INTO customers (c_id, c_name, c_addr) VALUES (1, 'Gayatri Nikam', '123 Maple St, Ahmednagar');
+INSERT INTO customers (c_id, c_name, c_addr) VALUES (2, 'Avinash Sharma', '456 Oak St, Mumbai');
+INSERT INTO customers (c_id, c_name, c_addr) VALUES (3, 'Mrunal Thakur', '789 Pine St, Delhi');
+INSERT INTO customers (c_id, c_name, c_addr) VALUES (7, 'Shrihan Wable', '101 Elm St, Pune');
+
+
+
+DECLARE  
+   id customers.c_id%TYPE := 7;  
+   name customers.c_name%TYPE;  
+   addr customers.c_addr%TYPE;  
+BEGIN  
+   SELECT c_name, c_addr INTO name, addr  
+   FROM customers  
+   WHERE customers.c_id = id;  
+
+   DBMS_OUTPUT.PUT_LINE('Name: ' || name);  
+   DBMS_OUTPUT.PUT_LINE('Address: ' || addr);  
+EXCEPTION  
+   WHEN no_data_found THEN  
+      DBMS_OUTPUT.PUT_LINE('No such customer!');  
+   WHEN others THEN  
+      DBMS_OUTPUT.PUT_LINE('Display!');  
+END;

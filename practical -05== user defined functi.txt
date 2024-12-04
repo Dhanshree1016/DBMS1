@@ -1,0 +1,29 @@
+practical -05== user defined function //// factorial
+
+CREATE OR REPLACE FUNCTION fact (
+    a IN NUMBER
+) RETURN NUMBER
+IS
+    fct NUMBER := 1; -- Variable to hold the factorial result
+BEGIN
+    -- Loop to calculate the factorial
+    FOR i IN 1..a LOOP
+        fct := fct * i; -- Multiply fct by the current value of i
+    END LOOP;
+
+    RETURN fct; -- Return the factorial
+END fact;
+
+DECLARE
+    a NUMBER; -- Input value
+    b NUMBER; -- Factorial result
+BEGIN
+    -- Assign a value to a (You can replace 5 with any desired number)
+    a := 5;
+
+    -- Call the fact function to calculate the factorial of a
+    b := fact(a);
+
+    -- Print the result
+    DBMS_OUTPUT.PUT_LINE('Factorial of ' || a || ' is ' || b);
+END;

@@ -1,0 +1,44 @@
+practical -06 == triggers 
+
+before delete trigger
+
+create database t2;
+
+
+ use t2;
+
+ create table student(rn int not null primary key,
+    name varchar(22) not null);
+
+ create table student_bk(rn int not null primary key,
+ name varchar(22) not null);
+
+ insert into student values (1,'avishkar');
+
+ insert into student values (2,'ram');
+
+ insert into student values (3,'mustafa');
+
+ insert into student values (4,'sahil');
+
+ select * from student;
+
+ select * from student_bk;
+
+ delimiter **
+create trigger del
+before delete on stud
+for each row
+begin
+  insert into stud_bk(rn,name) values(old.rn,old.name);
+end;
+**
+
+ delete from student where rn=1;
+ **
+
+ select * from student;
+ **
+
+select * from student_bk;
+**

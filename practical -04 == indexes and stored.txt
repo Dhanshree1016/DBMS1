@@ -1,0 +1,55 @@
+practical -04 == indexes and stored procedure.
+
+Indexes
+---------
+CREATE DATABASE college;
+
+CREATE TABLE student
+(
+    rollno int NOT NULL,
+    name varchar(10) NOT NULL,
+    address varchar(20) NOT NULL,
+    marks int NOT NULL,
+    primary key(rollno)
+    );
+
+INSERT INTO student (rollno, name, address,marks) VALUES ('1', 'Abhishek','kopargaon','40'), ('2', 'Akshay', 'shirdi','50'),('3', 'Abhi','kopargaon','70'), ('4', 'Akash', 'rahuri','30'),('5', 'Aman','Aurangabad','80'), ('6', 'Dany', 'Sangamner','75');
+
+select * from student;
+
+create index i1 on student(rollno);
+
+show index from student;
+
+drop index i1 on student;
+
+show index from student;
+
+
+
+select student.name as s_name, courses.name as c_name from student inner join courses on student.courses=courses.id; 
+----------------------------------------
+
+stored procedure
+----------------delimiter /
+ show tables;
+     /
+
+
+ CREATE PROCEDURE disp()
+
+ BEGIN
+ select * from user;
+ END;
+ /
+
+ call disp/
+
+
+ CREATE PROCEDURE search_name(IN inputname long)
+         BEGIN
+       select * from user where fname=inputname;
+       END;
+      /
+
+ call search_name("Nitin")/
